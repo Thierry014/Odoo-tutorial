@@ -1,0 +1,53 @@
+<odoo>
+  <data>
+      <!-- house type window action -->
+    <record id='house_type_action' model='ir.actions.act_window'>
+            <field name="name">Properties type</field>
+            <field name="res_model">house.type</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="context">{}</field>
+    </record>
+
+    <record id='house_tag_action' model='ir.actions.act_window'>
+            <field name="name">Properties tag</field>
+            <field name="res_model">house.tag</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="context">{}</field>
+    </record>
+
+    <menuitem id="settings_sub_action" name="Settings" parent="house_base_menu"/>
+        <menuitem id="type_child_action" name="Type" parent="settings_sub_action" action="house_type_action"/>
+        <menuitem id="tag_child_action" name="Tags" parent="settings_sub_action" action="house_tag_action"/>
+
+
+
+ <record id="house_type_form_view_" model="ir.ui.view">
+        <field name="name">Property types</field>
+        <field name="model">house.type</field>
+        <field name="arch" type="xml">
+            <form string="">
+                <sheet>
+                <div class="oe_button_box" name="button_box">
+                        <button class="oe_stat_button" name="action_type_offer" type="object" icon="fa-archive" >
+                                <div class="o_form_field o_stat_info mr4">
+                                            <span class="o_stat_text">Offer(s):</span>
+                                </div>
+                            
+                                <div class="o_form_field o_stat_info">
+                                    <span class="o_stat_value"><field name="offer_count"/></span>
+                                </div>
+                        </button>
+                </div>
+                <h1><field name="name"/></h1>
+                <separator></separator>
+                <field name="house_ids"/>
+                </sheet>
+            </form>
+        </field>
+
+    </record>
+
+  </data>
+</odoo>

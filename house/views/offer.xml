@@ -1,0 +1,34 @@
+<odoo>
+  <data>
+      <!-- house main window action -->
+    <record id='house_offer_action' model='ir.actions.act_window'>
+            <field name="name">Offers</field>
+            <field name="res_model">house.offer</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <!-- set default filter -->
+            <field name="context">{}</field>
+            <!-- <field name="context">{"search_default_not_sold":0}</field> -->
+
+    </record>
+
+    <menuitem id="offer_child_action" name="Offers" parent="settings_sub_action" action="house_offer_action"/>
+
+
+    <record id="offer_tree_view" model="ir.ui.view">
+        <field name="name">Property offers</field>
+        <field name="model">house.offer</field>
+        <field name="arch" type="xml">
+            <tree decoration-bf="state=='accepted'" decoration-success="state in ['accepted']" 
+                                                decoration-danger="state in ['rejected']">
+            
+                <field name="offer_price" />
+                <!-- <field name="author_ids" widget="many2many_tags" /> -->
+                <field name="buyer_id" />
+                <field name="house_id" />
+                <field name="state"/>
+            </tree>
+        </field>
+    </record>
+    </data>
+</odoo>

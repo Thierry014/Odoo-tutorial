@@ -1,0 +1,137 @@
+<odoo>
+  <data>
+      <!-- house main window action -->
+      <record id='house_action' model='ir.actions.act_window'>
+            <field name="name">Properties</field>
+            <field name="res_model">house.house</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <!-- set default filter -->
+            <field name="context">{}</field>
+            <!-- <field name="context">{"search_default_not_sold":0}</field> -->
+
+      </record>
+
+      <menuitem name="House" id="house_base_menu"/>
+        <menuitem id="adv_sub_action" name="Advertisement" parent="house_base_menu"/>
+          <menuitem id="property_child_action" name="Properties" parent="adv_sub_action" action="house_action"/>
+
+    <!-- house search view -->
+    <record id="house_search_view" model="ir.ui.view">
+        <field name="name">Properties</field>
+        <field name="model">house.house</field>
+        <field name="arch" type="xml">
+            <search>
+            <!-- filter -->
+                <filter string="On hand" name="not_sold" domain="[('state', '!=', 'sold')]"/>
+                <filter string="3 bedrooms" name="multi_room" domain="[('bedroom', '>=', 3)]"/>
+            <!-- group by -->
+                <filter string="Suburb" name="group_by_suburb" context="{'group_by':'postcode'}"/>
+
+            </search>
+        </field>
+    </record>
+    <!-- house tree view -->
+    <record id="house_tree_view" model="ir.ui.view">
+        <field name="name">Properties</field>
+        <field name="model">house.house</field>
+        <field name="arch" type="xml">
+            <tree decoration-bf="state=='sold'" decoration-success="state in ['sold']" 
+                                                decoration-warning="state in ['offered','confirmed']">
+                <field name="name" />
+                <!-- <field name="author_ids" widget="many2many_tags" /> -->
+                <field name="postcode" />
+                <field name="bedroom" />
+                <field name="selling_price" />
+                <field name="state" />
+                <field name="ava_from" />
+            </tree>
+        </field>
+    </record>
+
+    <!-- house form view -->
+    <record id="house_form_view_" model="ir.ui.view">
+        <field name="name">Properties</field>
+        <field name="model">house.house</field>
+        <field name="arch" type="xml">
+            <form string="Properties">
+                <header>
+                    <button name="mark_as_sold" type="object" string="Sold" />
+                    <button name="mark_as_cancelled" type="object" string="Cancel" />
+                    
+                    <field name="state" widget="statusbar" clickable='1' />
+                </header>
+                <sheet>
+                <!-- oe_stat_button show offer -->
+                    <div class="oe_button_box" name="button_box">
+                            <button class="oe_stat_button" name="action_house_offer" type="object" icon="fa-archive" >
+                                <div class="o_form_field o_stat_info mr4">
+                                            <span class="o_stat_text">Offer(s):</span>
+                                </div>
+                            
+                                <div class="o_form_field o_stat_info">
+                                    <span class="o_stat_value"><field name="offer_count"/></span>
+                                </div>
+                            </button>
+                    </div>
+                    <group name="group_top">
+                        <h1><field name="name" /></h1>
+                        <separator></separator>
+                        <div>
+                            <field name="tag_ids" widget="many2many_tags" options="{'color_field': 'color'}"/>
+                        </div>
+                        <separator></separator>
+                        <group> 
+                            <field name="property_type"/>
+                            <field name="postcode"/>
+                            <field name="ava_from" />
+                        </group>
+                        <group>
+                            <field name="exepted_price" />
+                            <field name="selling_price" />
+                            <field name="best_price"/>
+                        </group>
+                    </group>
+
+                        <notebook>
+                        <!-- page 1 Desc -->
+                            <page string='Desc'>
+                                <group>
+                                    <field name="description"/>
+                                    <field name="bedroom" />
+                                    <field name="bathroom"/>
+                                    <field name="garden"/>
+                                    <field name="ava_from" />
+                                    <field name="selling_price" />
+                                    <!-- <field name="state"/> -->
+                                </group>
+                            </page>
+
+                            <!-- page 2 People -->
+                            <page string='People'>
+                                <group>
+                                    <field name="salesman"/>
+                                    <field name="buyer"/>
+                                </group>
+                            </page>
+                            <!-- page 3 Offer  -->
+                            <page string='Offer'>
+                                <field name="offer_ids" context="{'default_house_id':active_id}">
+                                    <tree editable='1' decoration-success="state in ['accepted']" decoration-danger="state in ['rejected']" >
+                                        <field name="offer_price" type="char"/>
+                                        <field name="buyer_id"/>
+                                        <button name="accept_offer" string="Yes"  type="object" icon="fa-check"/>
+                                        <button name="reject_offer" string="No"  type="object" icon="fa-times"/>
+                                        <field name="state"/>
+                                    </tree>
+                                </field>
+                            </page>
+
+                        </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+  </data>
+</odoo>
