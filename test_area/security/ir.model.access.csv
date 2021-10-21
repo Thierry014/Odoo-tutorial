@@ -1,0 +1,5 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_test_test,access_test_test,model_test_test,,1,1,1,1
+access_test_area,access_test_area,model_test_area,,1,1,1,1
+access_test_people,access_test_people,model_test_people,,1,1,1,1
+access_test_staff,access_test_staff,model_test_staff,,1,1,1,1

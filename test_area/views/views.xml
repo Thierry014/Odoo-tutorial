@@ -1,0 +1,88 @@
+<odoo>
+  <data>
+      <record id='test_area_action' model='ir.actions.act_window'>
+            <field name="name">TestArea</field>
+            <field name="res_model">test.area</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+      </record>
+      <record id='test_test_action' model='ir.actions.act_window'>
+            <field name="name">Test</field>
+            <field name="res_model">test.test</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+      </record>
+      <record id='test_people_action' model='ir.actions.act_window'>
+            <field name="name">People</field>
+            <field name="res_model">test.people</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+      </record>
+      <record id='test_staff_action' model='ir.actions.act_window'>
+            <field name="name">Staff</field>
+            <field name="res_model">test.staff</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+      </record>
+      <!-- <record id='testarea_action' model='ir.actions.act_window'>
+            <field name="name">TestArea</field>
+            <field name="res_model">test.area</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+      </record> -->
+      
+
+      
+
+      <menuitem name="Test" id="testarea_base_menu"/>
+        <menuitem id="test_test_sub_menu" name="Test" parent="testarea_base_menu" action="test_test_action"/>
+        <menuitem id="test_area_sub_menu" name="Area" parent="testarea_base_menu" action="test_area_action"/>
+        <menuitem id="test_people_sub_menu" name="People" parent="testarea_base_menu" action="test_people_action"/>
+        <menuitem id="test_staff_sub_menu" name="Staff" parent="testarea_base_menu" action="test_staff_action"/>
+          <!-- <menuitem id="property_child_action" name="Properties" parent="adv_sub_action" action="house_action"/> -->
+      
+
+      <!-- test tree view -->
+      <record id="test_tree_view" model="ir.ui.view">
+        <field name="name">Test Tree</field>
+        <field name="model">test.test</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name" />
+                <field name="test_people_id"/>
+                <field name="test_result"/>
+                <field name="state"/>
+              
+              
+            </tree>
+        </field>
+      </record>
+
+      <!-- test form view -->
+      <record id="test_form_view" model="ir.ui.view">
+        <field name="name">Test Tree</field>
+        <field name="model">test.test</field>
+        <field name="arch" type="xml">
+            <form>
+              <header>
+                      <field name="state" widget='statusbar'/>
+                      <button name="do_test" type="object" string="Test"/>
+              </header>
+              <sheet>
+                  <group>
+                    <group>  
+                      <field name="name" />
+                      <field name="test_people_id"/>
+                      <field name="test_staff_id"/>
+                    </group>
+                    <group>
+                      <field name="test_area_id"/>
+                      <field name="test_result"/>
+                    </group>
+                  </group>
+              </sheet>
+            </form>
+        </field>
+      </record>
+  </data>
+</odoo>
