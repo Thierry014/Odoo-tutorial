@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record model="ir.actions.act_window" id="action_do_test_wizard">
+	    <field name="name">Test</field>
+	    <field name="res_model">test.test.wizard</field>
+	    <field name="view_type">form</field>
+	    <field name="view_mode">form</field>
+	    <field name="target">new</field>
+    </record>
+
+    <!-- wiz form view -->
+    <record id='do_test_wizard_form_view' model='ir.ui.view'>
+        <field name='name'>Test Here</field>
+        <field name='model'>test.test.wizard</field>
+        <field name='arch' type='xml'>
+        <form string="">
+        <sheet>
+            <group>
+                <field name='test_id'/>
+                <field name='result'/>
+            </group>
+            <group>
+                <!-- <field name='holder_id'/> -->
+            </group>
+        </sheet>
+        <footer>
+            <button string='Submit res' type='object' name='do_test_wizard' class='btn-primary'/>
+            <!-- <button string='Submit res' type='object' name='create_bike_sale_order' class='btn-primary'/> -->
+        </footer>
+
+        </form>
+        </field>
+    </record>
+
+</odoo>

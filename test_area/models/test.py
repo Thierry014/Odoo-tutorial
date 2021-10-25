@@ -20,8 +20,23 @@ class TestTest(models.Model):
     
     
     def do_test(self):
-        self.state = 'tested'
+        # self.state = 'tested'
         # popup wizard form to launch the testing 
+        print(self._context)
+        res = {
+            'name': 'acd',
+            'view_type': 'form',
+            'view_mode': 'form',
+            'res_model': 'test.test.wizard',
+            'view_id': self.env.ref('test_area.do_test_wizard_form_view').id,
+            'type': 'ir.actions.act_window',
+            'context':{
+                # 'default_test_id':self._context['params']['id'],
+                'default_test_id':self.id
+            },
+            'target': 'new'
+        }
+        return res
     
     
 

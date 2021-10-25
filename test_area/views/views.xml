@@ -66,6 +66,7 @@
             <form>
               <header>
                       <field name="state" widget='statusbar'/>
+                      <!-- <button name="%(action_do_test_wizard)d" type="action" string="Test"/> -->
                       <button name="do_test" type="object" string="Test"/>
               </header>
               <sheet>
