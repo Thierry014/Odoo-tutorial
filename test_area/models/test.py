@@ -14,17 +14,19 @@ class TestTest(models.Model):
     test_people_id = fields.Many2one(comodel_name='test.people', string='People')
     test_staff_id = fields.Many2one(comodel_name='test.staff', string='Staff')
     test_area_id = fields.Many2one(comodel_name='test.area', string='Area')
-    test_result = fields.Boolean(string='Res')
+    test_result = fields.Boolean(string='Covid Postive', default=False)
+    
+    test_info = fields.Text(string='Test INfo')
+    test_date = fields.Date()
     
     state = fields.Selection(string='', selection=[('reg', 'Reg'), ('tested', 'Tested'),('done', 'Done'),('cancelled','Cancelled')], default = 'reg')
     
     
     def do_test(self):
-        # self.state = 'tested'
         # popup wizard form to launch the testing 
         print(self._context)
         res = {
-            'name': 'acd',
+            'name': 'Dping Test',
             'view_type': 'form',
             'view_mode': 'form',
             'res_model': 'test.test.wizard',
@@ -37,6 +39,23 @@ class TestTest(models.Model):
             'target': 'new'
         }
         return res
+    
+    def input_result(self):
+        res ={
+            'name': 'Test res',
+            'view_type': 'form',
+            'view_mode': 'form',
+            'res_model': 'test.resinput.wizard',
+            'view_id': self.env.ref('test_area.input_res_wizard_form_view').id,
+            'type': 'ir.actions.act_window',
+            'context':{
+                'default_test_id':self.id
+            },
+            'target': 'new'
+        }
+        return res
+
+
     
     
 

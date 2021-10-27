@@ -65,9 +65,10 @@
         <field name="arch" type="xml">
             <form>
               <header>
-                      <field name="state" widget='statusbar'/>
+                      <field name="state" widget='statusbar' clickable='1'/>
                       <!-- <button name="%(action_do_test_wizard)d" type="action" string="Test"/> -->
                       <button name="do_test" type="object" string="Test"/>
+                      <button name="input_result" type="object" string="RES" attrs="{'invisible':[('state','not in','tested')]}"/>
               </header>
               <sheet>
                   <group>
@@ -75,6 +76,8 @@
                       <field name="name" />
                       <field name="test_people_id"/>
                       <field name="test_staff_id"/>
+                      <field name="test_info" attrs="{'invisible':[('state','in',['reg','cancelled'])]}"/>
+                      <field name="test_date" attrs="{'invisible':[('state','in',['reg','cancelled'])]}"/>
                     </group>
                     <group>
                       <field name="test_area_id"/>

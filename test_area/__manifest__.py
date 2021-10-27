@@ -25,6 +25,7 @@
     'data': [
         'security/ir.model.access.csv',
         'wizard/do_test_wizard.xml',
+        'wizard/input_res.xml',
         'views/views.xml',
         'views/templates.xml',
     ],
