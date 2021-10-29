@@ -55,6 +55,13 @@ class TestTest(models.Model):
         }
         return res
 
+    
+    def print_test_report(self):
+        for r in self:
+            print(f'{r.name} is printed')
+            return self.env.ref('test_area.report_covid_test_report').report_action(self)
+
+ 
 
     
     

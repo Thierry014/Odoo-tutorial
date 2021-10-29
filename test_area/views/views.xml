@@ -69,6 +69,7 @@
                       <!-- <button name="%(action_do_test_wizard)d" type="action" string="Test"/> -->
                       <button name="do_test" type="object" string="Test"/>
                       <button name="input_result" type="object" string="RES" attrs="{'invisible':[('state','not in','tested')]}"/>
+                      <button name="print_test_report" type="object" string="Print test Res" attrs="{'invisible':[('state','not in','done')]}" class='btn-danger'/>
               </header>
               <sheet>
                   <group>

@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="paper_format_geicp_report" model="report.paperformat">
+      <field name="name">A4 Covid result</field>
+      <field name="default" eval="True" />
+      <field name="format">A4</field>
+      <field name="header_line" eval="False" />
+      <field name="margin_top">50</field>
+      <field name="margin_bottom">10</field>
+      <field name="margin_left">7</field>
+      <field name="margin_right">7</field>
+      <field name="header_spacing">40</field>
+    </record>
+
+    <!-- <record id="paperformat_geicp_landscape_a4" model="report.paperformat">
+      <field name="name">GEICP A4 Landscape</field>
+      <field name="default" eval="True" />
+      <field name="format">A4</field>
+      <field name="page_height">0</field>
+      <field name="page_width">0</field>
+      <field name="orientation">Landscape</field>
+      <field name="margin_top">50</field>
+      <field name="margin_bottom">40</field>
+      <field name="margin_left">7</field>
+      <field name="margin_right">7</field>
+      <field name="header_line" eval="False" />
+      <field name="header_spacing">45</field>
+      <field name="dpi">90</field>
+    </record> -->
+
+    <!-- Purchasing -->
+    <!-- <report 
+        string="Request for Quotation" 
+        id="purchase.report_purchase_quotation" 
+        model="purchase.order" 
+        report_type="qweb-pdf"
+        name="purchase.report_purchasequotation" 
+        file="purchase.report_purchasequotation"
+        menu="False"
+        print_report_name="'Request for Quotation - %s' % (object.name)" 
+    />-->
+
+    <!-- <report 
+      string="Purchase Order / RFQ" 
+      id="purchase.action_report_purchase_order" 
+      model="purchase.order" 
+      report_type="qweb-pdf"
+      name="ge_au_templates.report_purchaseorder" 
+      file="ge_au_templates.report_purchaseorder"
+      paperformat="ge_au_templates.paper_format_geicp_report"
+      print_report_name="
+          (object.state in ('draft', 'sent') and 'Request for Quotation - %s' % (object.name) or
+          'Purchase Order - %s' % (object.name))"
+    />     -->
+    
+    <report 
+      string="Covid test report" 
+      id="report_covid_test_report" 
+      model="test.test" 
+      report_type="qweb-pdf"
+      name="test_area.covid_test_report" 
+      file="test_area.covid_test_report"
+      paperformat="test_area.paper_format_geicp_report"
+      menu = "False" 
+      print_report_name="
+          (object.state in ('draft', 'sent') and 'Request for Quotation - %s' % (object.name) or
+          'cv19 RES - %s' % (object.name))"
+
+    />
+
+</odoo>

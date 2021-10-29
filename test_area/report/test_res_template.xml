@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+<template id="covid_test_report">
+    <t t-call="web.html_container">
+        <t t-foreach="docs" t-as="o">
+            <t t-call="web.external_layout">
+                <div class="page">
+                    <h2>Report title</h2>
+                    <p><span t-field="o.name"/></p>
+                    <p><span t-field="o.test_people_id.name"/>s test on</p>
+                    <p><span t-field="o.test_date"/> is</p>
+                    
+                    <t t-if="o.test_result">
+                        <p>Postive</p>
+                    </t>
+                    <t t-else="">
+                        <p>Negative</p>
+                    </t>
+                </div>
+            </t>
+        </t>
+    </t>
+</template>
+
+
+</odoo>

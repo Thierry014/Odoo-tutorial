@@ -28,6 +28,8 @@
         'wizard/input_res.xml',
         'views/views.xml',
         'views/templates.xml',
+        'report/menu.xml',
+        'report/test_res_template.xml',
     ],
     # only loaded in demonstration mode
     'demo': [
